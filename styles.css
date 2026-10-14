@@ -1,1 +1,19 @@
 /* Colors palette reference:https://coolors.co/d71939-56dde0-1e1e1e-303030-ffffff */
+
+* {
+    box-sizing: boarder-box;
+}
+body { 
+    margin: 0;
+    padding: 24px;
+    font-family: "open sans", sans-serif;
+    line-height: 1.5;
+}
+h1,
+h2 {
+    font-family: "Oswald", sans-serif;
+}
+input,
+button {
+    font-family: inherit;
+}
