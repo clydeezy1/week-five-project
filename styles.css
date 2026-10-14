@@ -1,13 +1,29 @@
 /* Colors palette reference:https://coolors.co/d71939-56dde0-1e1e1e-303030-ffffff */
 
+:root {
+    --primary: #d71939;
+    --secondary: #56dde0;
+    --accent: #22d3ee;
+    --dark: #1e1e1e;
+    --dark-light: #303030;
+    --light: #ffffff;
+}
+
 * {
-    box-sizing: boarder-box;
+    box-sizing: border-box;
 }
 body { 
     margin: 0;
     padding: 24px;
     font-family: "open sans", sans-serif;
     line-height: 1.5;
+    background-color: var(--dark);
+    color: var(--light);
+}
+header,
+main {
+    max-width: 640px;
+    margin: 0 auto;
 }
 h1,
 h2 {
@@ -16,4 +32,27 @@ h2 {
 input,
 button {
     font-family: inherit;
+}
+
+form{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #4B4F52;
+    border-radius: 8px;
+
+}
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
 }
