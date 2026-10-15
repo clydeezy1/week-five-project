@@ -66,6 +66,10 @@ button {
     padding: 16px;
     margin-bottom: 12px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
 button:hover {
     background-color: #BB1530;
@@ -97,6 +101,8 @@ header {
     align-items: center;
     gap: 12px;
     cursor: pointer;
+    flex: 1;
+    min-width: 0;
 }
 
 #todoList input[type="checkbox"] {
@@ -111,3 +117,10 @@ header {
     color: #9E9E9E;
 }
 
+#todoList label span {
+    overflow-wrap: anywhere;
+}
+
+#todoList li button {
+    flex-shrink: 0;
+}

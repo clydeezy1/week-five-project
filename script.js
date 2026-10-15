@@ -2,11 +2,20 @@ const todoForm = document.querySelector("#todoForm");
 const todoInput = document.querySelector("#todoInput");
 const todoList = document.querySelector("#todoList");
 const todoError = document.querySelector("#todoError");
+const todoCount = document.querySelector("#todoCount");
 
-const todos =[];
+const todos = JSON.parse(localStorage.getItem("nextUpTodos")) || [];
+function saveTodos() {
+  localStorage.setItem("nextUpTodos", JSON.stringify(todos));
+}
 
+function updateTodoCount() {
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  todoCount.textContent = `${completedCount} of ${todos.length} tasks completed.`;
+}
 function renderTodos() {
   todoList.innerHTML = "";
+  updateTodoCount();
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
@@ -20,6 +29,8 @@ function renderTodos() {
 
     checkbox.addEventListener("change", () => {
       todo.completed = checkbox.checked;
+      saveTodos();
+      updateTodoCount();
       text.classList.toggle("completed", todo.completed);
     });
     
@@ -35,6 +46,7 @@ function renderTodos() {
 
     deleteButton.addEventListener("click", () => {
       todos.splice(index, 1);
+      saveTodos();
       renderTodos();
       });
 
@@ -61,6 +73,7 @@ todoForm.addEventListener("submit", (event) => {
     completed: false
   });
   
+  saveTodos();
   renderTodos();
   todoForm.reset();
 });
