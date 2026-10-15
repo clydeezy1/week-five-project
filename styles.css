@@ -22,7 +22,7 @@ body {
 }
 header,
 main {
-    max-width: 640px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 h1,
@@ -62,7 +62,8 @@ button {
     padding: 0;
 }
 #todoList li {
-    background-color: var(--dark-light);
+    background-color: var(--light);
+    color: var(--dark);
     padding: 16px;
     margin-bottom: 12px;
     border-radius: 8px;
@@ -123,4 +124,99 @@ header {
 
 #todoList li button {
     flex-shrink: 0;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.task-panel,
+.daily-progress,
+.task-picker {
+    background-color: #292C30;
+    padding: 24px;
+    border-radius: 12px;
+    min-width: 0;
+}
+
+.sidebar {
+    display: grid;
+    gap: 24px;
+}
+
+@media (max-width: 800px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+#taskProgress {
+    width: 100%;
+    height: 16px;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    appearance: none;
+    background-color: #4B4F52;
+}
+
+#taskProgress::-webkit-progress-bar {
+    background-color: #4B4F52;
+}
+
+#taskProgress::-webkit-progress-value {
+    background-color: var(--secondary);
+}
+
+#taskProgress::-moz-progress-bar {
+    background-color: var(--secondary);
+}
+
+.task-filter {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.task-filter button {
+    flex: 1;
+    padding: 8px;
+    background-color: transparent;
+    color: var(--light);
+}
+
+.task-filter button[aria-pressed="true"] {
+    background-color: #4b4f52;
+}
+.task-filter button:hover {
+    background-color: #4b4f52;
+}
+
+#todoList label {
+    flex-wrap: wrap;
+}
+
+.energy-label {
+    flex-basis: 100%;
+    padding-left: 32px;
+    color: var(--secondary);
+    font-size: 0.8rem;
+}
+
+#todoList li button {
+    background-color: transparent;
+    color: var(--primary);
+    padding: 8px;
+    front-weight: 600;
+}
+
+#todoList li button:hover {
+    text-decoration: underline;
+}
+
+#todoList .energy-label {
+    color: 17636b;
 }

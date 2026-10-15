@@ -3,6 +3,26 @@ const todoInput = document.querySelector("#todoInput");
 const todoList = document.querySelector("#todoList");
 const todoError = document.querySelector("#todoError");
 const todoCount = document.querySelector("#todoCount");
+const taskProgress = document.querySelector("#taskProgress");
+const todoEnergy = document.querySelector("#todoEnergy");
+
+const filterButtons = document.querySelectorAll("[data-filter]");
+let currentFilter = "all";
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentFilter = button.dataset.filter;
+    
+    filterButtons.forEach((filterButton) => {
+      filterButton.setAttribute(
+        "aria-pressed",
+        String(filterButton === button)
+      );
+    });
+
+    renderTodos();
+  });
+});
 
 const todos = JSON.parse(localStorage.getItem("nextUpTodos")) || [];
 function saveTodos() {
@@ -11,13 +31,25 @@ function saveTodos() {
 
 function updateTodoCount() {
   const completedCount = todos.filter((todo) => todo.completed).length;
-  todoCount.textContent = `${completedCount} of ${todos.length} tasks completed.`;
+
+  const precentage = todos.length === 0 
+  ? 0 
+  : (completedCount / todos.length) * 100;
+
+  todoCount.textContent = 
+  `${completedCount} of ${todos.length} tasks completed.`;
+  
+  taskProgress.value = precentage;
 }
+
 function renderTodos() {
   todoList.innerHTML = "";
   updateTodoCount();
 
   todos.forEach((todo, index) => {
+    if (currentFilter === "active" && todo.completed) return;
+    if (currentFilter === "completed" && !todo.completed) return;
+
     const li = document.createElement("li");
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
@@ -30,14 +62,20 @@ function renderTodos() {
     checkbox.addEventListener("change", () => {
       todo.completed = checkbox.checked;
       saveTodos();
-      updateTodoCount();
-      text.classList.toggle("completed", todo.completed);
+      renderTodos();
     });
     
     text.classList.toggle("completed", todo.completed);
 
     label.appendChild(checkbox);
     label.appendChild(text);
+    const energyLabel = document.createElement("small");
+    energyLabel.className = "energy-label";
+
+    energyLabel.textContent = todo.completed ? "Completed" : `${todo.energy || "low"} energy`;
+
+      label.appendChild(energyLabel)
+
     li.appendChild(label);
 
     const deleteButton = document.createElement("button");
@@ -70,7 +108,8 @@ todoForm.addEventListener("submit", (event) => {
 
   todos.push({
     text: todoText,
-    completed: false
+    completed: false,
+    energy: todoEnergy.value
   });
   
   saveTodos();
