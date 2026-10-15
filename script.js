@@ -146,3 +146,28 @@ function pickTask() {
   completeSuggested.disabled = false;
 
 }
+energyButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedEnergy = button.dataset.energy;
+    pickTask();
+  });
+});
+
+pickAnother.addEventListener("click", () => {
+  if (!selectedEnergy) {
+    suggestedTask.textContent = "Choose an energy level first.";
+    return;
+  }
+  pickTask();
+});
+
+completeSuggested.addEventListener("click", () => {
+  if (!suggestedTodo) {
+    return;
+  }
+
+  suggestedTodo.completed = true;
+  saveTodos();
+  renderTodos();
+  pickTask();
+});

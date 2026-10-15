@@ -68,9 +68,26 @@
             ></progress>
         </section>
 
-        <section class="task-picker">
-            <h2>Pick My Next Task</h2>
-        </section>
+       <section class="task-picker">
+        <h2>Pick My Next Task</h2>
+
+        <p>What's your energy level?</p>
+
+        <div class="energy-buttons">
+            <button type="button" data-energy="low">Low</button>
+            <button type="button" data-energy="medium">Medium</button>
+            <button type="button" data-energy="high">High</button>
+        </div>
+        <p id="suggestedTask" aria-live="polite">
+            Choose an energy level to get started.
+        </p>
+        <button type="button" id="completeSuggested" disabled>
+            Mark Complete
+        </button>
+        <button type="button" id="pickAnother">
+            Pick Another
+        </button>
+       </section>
         </div>
     </div>
 
