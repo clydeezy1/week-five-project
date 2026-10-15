@@ -5,6 +5,13 @@ const todoError = document.querySelector("#todoError");
 const todoCount = document.querySelector("#todoCount");
 const taskProgress = document.querySelector("#taskProgress");
 const todoEnergy = document.querySelector("#todoEnergy");
+const energyButtons = document.querySelectorAll("button[data-energy}");
+const suggestedTask = document.querySelector("#suggestedTask");
+const completeSuggested = document.querySelector("#completeSuggested");
+const pickAnother = document.querySelector("#pickAnother");
+
+let selectedEnergy = "";
+let suggestedTodo = null;
 
 const filterButtons = document.querySelectorAll("[data-filter]");
 let currentFilter = "all";
@@ -71,6 +78,9 @@ function renderTodos() {
     label.appendChild(text);
     const energyLabel = document.createElement("small");
     energyLabel.className = "energy-label";
+    energyLabel.dataset.energy = todo.completed
+      ? "completed"
+      : (todo.energy || "low")
 
     energyLabel.textContent = todo.completed ? "Completed" : `${todo.energy || "low"} energy`;
 
@@ -116,3 +126,23 @@ todoForm.addEventListener("submit", (event) => {
   renderTodos();
   todoForm.reset();
 });
+
+function pickTask() {
+  const matchingTasks =todos.filter((todo) => {
+    return !todo.completed && (todo.energy || "low") === selectedEnergy;
+  });
+
+  if (matchingTasks.length === 0) {
+    suggestedTodo = null;
+    suggestedTask.textContent = "No unfinished tasks at this energy level.";
+    completeSuggested.disabled = true;
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * matchingTasks.length);
+
+  suggestedTodo = matchingTasks[randomIndex];
+  suggestedTask.textContent = suggestedTodo.text;
+  completeSuggested.disabled = false;
+
+}
