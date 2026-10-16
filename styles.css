@@ -345,3 +345,25 @@ select:focus-visible {
     accent-color: var(--secondary);
     cursor: pointer;
 }
+/* Add depth to the side panels */
+.daily-progress,
+.task-picker {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlight the task picker */
+.task-picker h2 {
+    color: var(--secondary);
+}
+
+/* Make the energy dropdown feel less cramped */
+select {
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+header h1 {
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 4px solid var(--secondary);
+}
