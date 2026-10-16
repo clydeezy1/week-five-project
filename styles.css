@@ -30,6 +30,7 @@ h2 {
     font-family: "Oswald", sans-serif;
 }
 input,
+select,
 button {
     font-family: inherit;
 }
@@ -321,4 +322,26 @@ text-transform: capitalize;
 .energy-buttons button[aria-pressed="true"] {
     background-color: var(--secondary);
     color: var(--dark);
+}
+
+#todoList label {
+min-width: 0;
+}
+
+#todoList label span {
+    overflow-wrap: anywhere;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline:  3px solid var(--secondary);
+    outline-offset: 3px;
+}
+
+#todoList input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--secondary);
+    cursor: pointer;
 }
