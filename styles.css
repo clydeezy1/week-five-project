@@ -136,7 +136,7 @@ header {
 .task-panel,
 .daily-progress,
 .task-picker {
-    background-color: #292C30;
+    background-color: var(--dark-light);
     padding: 24px;
     border-radius: 12px;
     min-width: 0;
@@ -175,23 +175,24 @@ header {
     background-color: var(--secondary);
 }
 
-.task-filter {
+.task-filters {
     display: flex;
     gap: 8px;
     margin-bottom: 16px;
 }
 
-.task-filter button {
+.task-filters button {
     flex: 1;
     padding: 8px;
     background-color: transparent;
     color: var(--light);
 }
 
-.task-filter button[aria-pressed="true"] {
-    background-color: #4b4f52;
-}
-.task-filter button:hover {
+.task-filters button[aria-pressed="true"] {
+background-color: var(--secondary);
+    color: var(--dark);}
+
+.task-filters button:hover {
     background-color: #4b4f52;
 }
 
@@ -210,21 +211,17 @@ header {
     background-color: transparent;
     color: var(--primary);
     padding: 8px;
-    front-weight: 600;
+    font-weight: 600;
 }
 
 #todoList li button:hover {
     text-decoration: underline;
 }
 
-#todoList .energy-label {
-    color: 17636b;
-}
-
 #todoList label {
     display: grid;
     grid-template-columns: 20px minmax(0, 1fr);
-    gap: 6px 12px
+    gap: 6px 12px;
 }
 
 #todoList label input[type="checkbox"] {
@@ -269,4 +266,59 @@ text-transform: capitalize;
     background-color: #eeeeee;
     color: #595959;
     box-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task-panel,
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+
+.energy-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.energy-buttons button {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.energy-buttons button:hover {
+    background-color: var(--dark-light);
+}
+
+.energy-buttons button[aria-pressed="true"] {
+    background-color: var(--secondary);
+    color: var(--dark);
+}
+.energy-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.energy-buttons button {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.energy-buttons button:hover {
+    background-color: var(--dark-light);
+}
+
+.energy-buttons button[aria-pressed="true"] {
+    background-color: var(--secondary);
+    color: var(--dark);
 }

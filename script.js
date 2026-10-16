@@ -5,7 +5,7 @@ const todoError = document.querySelector("#todoError");
 const todoCount = document.querySelector("#todoCount");
 const taskProgress = document.querySelector("#taskProgress");
 const todoEnergy = document.querySelector("#todoEnergy");
-const energyButtons = document.querySelectorAll("button[data-energy}");
+const energyButtons = document.querySelectorAll("button[data-energy]");
 const suggestedTask = document.querySelector("#suggestedTask");
 const completeSuggested = document.querySelector("#completeSuggested");
 const pickAnother = document.querySelector("#pickAnother");
@@ -52,6 +52,9 @@ function updateTodoCount() {
 function renderTodos() {
   todoList.innerHTML = "";
   updateTodoCount();
+  if (selectedEnergy) {
+    pickTask();
+  }
 
   todos.forEach((todo, index) => {
     if (currentFilter === "active" && todo.completed) return;
@@ -149,6 +152,14 @@ function pickTask() {
 energyButtons.forEach((button) => {
   button.addEventListener("click", () => {
     selectedEnergy = button.dataset.energy;
+
+    energyButtons.forEach((energyButton) => {
+      energyButton.setAttribute(
+        "aria-pressed",
+        String(energyButton === button)
+      );
+    });
+    
     pickTask();
   });
 });
